@@ -166,6 +166,19 @@ UICollectionViewDataSource, UISearchBarDelegate{
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let pokemon: Pokemon!
+        
+        if inSearchMode{
+        
+            pokemon = fliteredPokemons[indexPath.row]
+        }else{
+            
+            pokemon = pokemons[indexPath.row]
+        }
+        
+        print(pokemon.name)
+        performSegueWithIdentifier("PokemonDetailVC", sender: pokemon)
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -175,6 +188,20 @@ UICollectionViewDataSource, UISearchBarDelegate{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         return CGSizeMake(93, 93)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "PokemonDetailVC" {
+        
+            if let detailVC = segue.destinationViewController as? PokemonDetailVC {
+                
+                if let poke = sender as? Pokemon{
+                    
+                    detailVC.pokemon = poke
+                }
+            }
+        }
     }
     
     

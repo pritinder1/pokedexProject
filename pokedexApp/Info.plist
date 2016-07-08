@@ -48,5 +48,10 @@
 		<string>pokemon_filled.ttf</string>
 		<string>pokemon_hollow.ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
